@@ -20,6 +20,11 @@ public class Photos {
     private String rootFolderId;
 
     /**
+     * Size of query
+     */
+    private static final int PAGE_SIZE = 100;
+
+    /**
      * Constructor
      * @param drive the drive service object
      * @throws IOException if cannot find file
@@ -42,6 +47,7 @@ public class Photos {
     public void manage() throws IOException {
         service.files().list()
                 .setQ("mimeType contains 'image/' or mimeType contains 'video/'")
+                .setPageSize(PAGE_SIZE);
     }
 
     private void getAllVideoImageFiles() {

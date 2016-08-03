@@ -1,6 +1,8 @@
 import com.google.api.services.drive.Drive;
 import com.google.api.services.drive.model.File;
 import com.google.api.services.drive.model.FileList;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.List;
@@ -24,6 +26,11 @@ public class Photos {
      * Size of query
      */
     private static final int PAGE_SIZE = 100;
+
+    /**
+     * Hold a logger here
+     */
+    private static final Logger logger = LoggerFactory.getLogger(Photos.class);
 
     /**
      * Constructor
@@ -79,7 +86,7 @@ public class Photos {
      */
     private void organizePhotoVideo(File file) {
         try {
-            System.out.println(file.getName());
+            logger.debug("Examining file {}", file.getName());
             // need to check it's in the right root folder as it's all files we're looking at
             if (isInRootFolder(file)) {
                 System.out.println("foo");
@@ -115,7 +122,7 @@ public class Photos {
             }
             // only return if true
             if (isInRoot) {
-                return isInRoot;
+                return true;
             }
         }
 

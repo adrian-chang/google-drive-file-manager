@@ -99,7 +99,7 @@ public class DriveQuickstart {
         // Build a new authorized API client service.
         Drive service = getDriveService();
 
-        Photos photos = new Photos(service);
+        Photos photos = new Photos(service, "Photos");
         photos.manage();
         /*String pageToken = null;
         do {
